@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebView Control Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='6') }}" />
+  </head>
+  <body>
+    <!-- i removed 127.0.0.1/admin and added a whitelist! -->
+    <div class="bg-shape shape-a"></div>
+    <div class="bg-shape shape-b"></div>
+    <div class="bg-grid"></div>
+
+    <main class="page">
+      <section class="hero reveal">
+        <div class="hero-top">
+          <p class="eyebrow">Corp Browse / WebView Proxy</p>
+          <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+        </div>
+        <h1>Welcome, {{ user_login }}</h1>
+        <p class="lead">Restricted corporate webview proxy.</p>
+      </section>
+
+      <section class="panel reveal delay-1">
+        <div class="panel-top">
+          <h2>WebView Console</h2>
+          <span class="badge">POST /api/webview</span>
+        </div>
+
+        <form id="fetch-form" class="fetch-form">
+          <label for="target-url">Target URL</label>
+          <div class="input-row">
+            <input
+              id="target-url"
+              name="url"
+              type="text"
+              placeholder="https://www.google.com/search?q=yourrequest"
+              value="https://www.google.com/search?q=yourrequest"
+              required
+            />
+            <button type="submit" id="send-btn">Open</button>
+          </div>
+        </form>
+
+      </section>
+
+      <section class="result reveal delay-2">
+        <div class="result-head">
+          <h3>Proxy Response</h3>
+          <div class="meta">
+            <span id="status-pill" class="status idle">idle</span>
+            <span id="upstream-pill" class="upstream">upstream: -</span>
+            <span id="ctype-pill" class="upstream">content-type: -</span>
+          </div>
+        </div>
+        <iframe
+          id="html-view"
+          class="html-view"
+          sandbox="allow-forms allow-scripts allow-same-origin"
+          referrerpolicy="no-referrer"
+        ></iframe>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js', v='6') }}"></script>
+  </body>
+</html>

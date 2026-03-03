@@ -1,0 +1,29 @@
+services:
+  web:
+    build: ./web
+    container_name: ssrf_web
+    network_mode: host
+    environment:
+      - APP_ENV=ctf
+      - WEB_PORT=31337
+      - INTERNAL_SOCKET_PATH=/run/internal/internal.sock
+      - WEB_DB_PATH=/tmp/web_users.db
+      - SESSION_SECRET=practice_session_secret
+    depends_on:
+      - internal
+    volumes:
+      - internal_socket:/run/internal
+
+  internal:
+    build: ./internal
+    container_name: ssrf_internal
+    network_mode: none
+    environment:
+      - FLAG=practice{y3t_3n0th3r_sql1}
+      - INTERNAL_SOCKET_PATH=/run/internal/internal.sock
+      - INTERNAL_DB_PATH=/tmp/internal.db
+    volumes:
+      - internal_socket:/run/internal
+
+volumes:
+  internal_socket:

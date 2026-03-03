@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebView Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='6') }}" />
+  </head>
+  <body>
+    <div class="bg-shape shape-a"></div>
+    <div class="bg-shape shape-b"></div>
+    <div class="bg-grid"></div>
+
+    <main class="page auth-page">
+      <section class="hero reveal">
+        <p class="eyebrow">Corp Browse / Restricted WebView</p>
+        <h1>Login Required</h1>
+        <p class="lead">Only authenticated users can use the corporate webview proxy.</p>
+      </section>
+
+      <section class="panel reveal delay-1">
+        <div class="panel-top">
+          <h2>Sign In</h2>
+          <span class="badge">Session Auth</span>
+        </div>
+        <form class="fetch-form" method="post" action="{{ url_for('login') }}">
+          <label for="login">Login</label>
+          <div class="input-row single">
+            <input id="login" name="login" type="text" placeholder="login" required />
+          </div>
+          <label for="password">Password</label>
+          <div class="input-row single">
+            <input id="password" name="password" type="password" placeholder="password" required />
+          </div>
+          <button type="submit" id="send-btn">Log In</button>
+        </form>
+        <form class="fetch-form" method="post" action="{{ url_for('register') }}">
+          <div class="panel-top">
+            <h2>Create Account</h2>
+            <span class="badge">Registration</span>
+          </div>
+          <label for="reg-login">Login</label>
+          <div class="input-row single">
+            <input id="reg-login" name="login" type="text" placeholder="new login" required />
+          </div>
+          <label for="reg-password">Password</label>
+          <div class="input-row single">
+            <input id="reg-password" name="password" type="password" placeholder="new password" required />
+          </div>
+          <button type="submit" id="send-btn">Create User</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <pre class="flash-box">{{ messages[0] }}</pre>
+        {% endif %}
+        {% endwith %}
+      </section>
+    </main>
+  </body>
+</html>
