@@ -106,7 +106,7 @@ curl -s -b cookies.txt \
 Expected output contains:
 
 ```text
-practice{ssrf_whitelist_bypass_sqli_flag}
+practice{y3t_3n0th3r_sql1}
 ```
 
 ## Acceptance checklist
