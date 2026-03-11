@@ -36,13 +36,14 @@
 
         <form id="fetch-form" class="fetch-form">
           <label for="target-url">Target URL</label>
+          <p class="lead">Allowed domains: <code>curl.com</code>, <code>github.com</code></p>
           <div class="input-row">
             <input
               id="target-url"
               name="url"
               type="text"
-              placeholder="https://www.google.com/search?q=yourrequest"
-              value="https://www.google.com/search?q=yourrequest"
+              placeholder="https://curl.com/"
+              value="https://github.com/search?q=yourrequest"
               required
             />
             <button type="submit" id="send-btn">Open</button>

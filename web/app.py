@@ -27,10 +27,8 @@ INTERNAL_SOCKET_PATH = os.getenv("INTERNAL_SOCKET_PATH", "/run/internal/internal
 app.secret_key = os.getenv("SESSION_SECRET", "dev_session_secret_change_me")
 
 ALLOWED_URL_FRAGMENTS = [
-    "google.com",
-    "ya.ru/maps",
-    "wikipedia.org",
-    "dota2.com"
+    "curl.com",
+    "github.com",
 ]
 INTERNAL_HOSTS = {"127.0.0.1", "localhost", "internal", "intra"}
 
